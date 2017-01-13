@@ -1,0 +1,29 @@
+{
+  "name": "martial_robots",
+  "version": "0.0.1",
+  "description": "martial robots challenge",
+  "main": "index.js",
+  "author": "cirpo",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-jest": "^18.0.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "jest": "^18.1.0",
+    "nodemon": "^1.11.0"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon index.js --exec babel-node --presets es2015"
+  },
+  "babel": {
+    "presets": [
+      "babel-preset-es2015"
+    ]
+  }
+}
