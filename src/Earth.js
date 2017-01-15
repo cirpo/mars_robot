@@ -1,4 +1,4 @@
-import robots from './Robots'
+import { createRobot } from './Robots'
 import coordinates from './Coordinates'
 
 const Earth = {
@@ -13,7 +13,7 @@ const Earth = {
     let robot = null
 
     if(this.isAValidPosition(position) && coordinates.areValid(mars, position)) {
-      robot = robots.createRobot(position.x, position.y, position.orientation)
+      robot = createRobot(position.x, position.y, position.orientation)
     }
 
     return robot
@@ -31,7 +31,25 @@ const Earth = {
     return Number.isInteger(position.x) && position.x > -1 && position.x <= 50 &&
       Number.isInteger(position.y) && position.y > -1 && position.y <= 50 &&
       coordinates.orientations.indexOf(position.orientation) > -1
-  }
+  },
+  /**
+   * Given a string of commands, it executes a robot command one by one
+   * After trying executing all the command, the final robot object with its
+   * poistion and orientation is pushed to the robot colletion
+   *
+   * @param {Object} robot
+   * @param {Object} mars
+   * @param {String} commands
+   */
+  sendCommand(robot, mars, commands) {
+    commands.split('').forEach((ins) => {
+      console.log(ins)
+      console.log('robot', robot)
+      robot = robots.commands[ins](robot, mars)
+    })
+
+    this.robotz.push(robot)
+  },
 
 }
 
