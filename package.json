@@ -18,7 +18,7 @@
     "verbose": true
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "start": "nodemon index.js --exec babel-node --presets es2015"
   },
   "babel": {
