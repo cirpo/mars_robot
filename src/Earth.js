@@ -2,6 +2,7 @@ import { createRobot, availableCommands } from './Robots'
 import coordinates from './Coordinates'
 
 const MAX_POSITION = 50
+const MAX_COMMAND_LENGTH = 100
 const Earth = {
   robots : [],
 /**
@@ -10,7 +11,7 @@ const Earth = {
  *  @param {Object} position - the robot position object (x, y and orientation)
  *  @returns {Object|null}  robot or null
  */
-  positionRobot(mars, position) {
+  positionRobot: function(mars, position) {
     let robot = null
 
     if(this.isAValidPosition(position) && coordinates.areValid(position, mars)) {
@@ -28,7 +29,7 @@ const Earth = {
  * @param {Object} position - the robot position to check (x, y and orientation)
  * @returns {Boolean} isValid - true if position values is valid
  */
-  isAValidPosition(position){
+  isAValidPosition: function(position){
     return Number.isInteger(position.x) && position.x > -1 && position.x <= MAX_POSITION &&
       Number.isInteger(position.y) && position.y > -1 && position.y <= MAX_POSITION &&
       coordinates.orientations.indexOf(position.orientation) > -1
@@ -42,7 +43,12 @@ const Earth = {
    * @param {Object} mars
    * @param {String} commands
    */
-  sendCommand(robot, mars, commands) {
+  sendCommand: function(robot, mars, commands) {
+    if(commands.length > MAX_COMMAND_LENGTH) {
+      console.log(`Cannot process commands, too many commands: ${commands.length}`)
+      return robot
+    }
+
     commands.split('').forEach((ins) => {
       if (availableCommands[ins]) {
         robot = availableCommands[ins](robot, mars)
@@ -56,7 +62,7 @@ const Earth = {
   /**
    *  Print in the console the robots status
    */
-  printRobotsReport(){
+  printRobotsReport: function(){
     this.robots.forEach((robot) => {
       robot.status = robot.status ? robot.status : ''
       console.log(`${robot.x} ${robot.y} ${robot.orientation} ${robot.status}` )

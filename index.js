@@ -1,17 +1,28 @@
+import Console from './src/Console'
 import Mars from './src/Mars'
 import Earth from './src/Earth'
 
-const instructions = [
-  {"x":1, "y": 1, "orientation": "E", "commands": "RFRFRFRF"},
-  {"x":3, "y": 2, "orientation": "N", "commands": "FRRFLLFFRRFLL"},
-  {"x":0, "y": 3, "orientation": "W", "commands": "LLFFFLFLFL"},
-]
+let instructions = {}
 
-const mars = new Mars(5, 3)
+try {
+  instructions = Console.getInstructions()
+} catch(err){
+  console.log(`Error while getting the instructions from the input file: ${err.message}`)
+  process.exit(0)
+}
 
-instructions.forEach((ins) => {
+const mars = new Mars(instructions.mars.x, instructions.mars.y)
+
+instructions.robots.forEach((ins) => {
   let robot = Earth.positionRobot(mars, ins)
+
+  if(!robot) {
+    console.log('Cannot position robot: ', ins)
+    return
+  }
+
   Earth.sendCommand(robot, mars, ins.commands)
 })
 
+console.log('Final robots status:', '\n')
 Earth.printRobotsReport()
