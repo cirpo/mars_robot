@@ -14,4 +14,4 @@ instructions.forEach((ins) => {
   Earth.sendCommand(robot, mars, ins.commands)
 })
 
-console.log(Earth.getRobotsReport())
+Earth.printRobotsReport()
