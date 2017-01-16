@@ -88,3 +88,29 @@ test('It should move a robot forward, from 11W to 01W ', () => {
   expect(newRobot.x).toBe(0)
   expect(newRobot.y).toBe(1)
 })
+
+test('It should not move a robot forward, when a scent is blocking', () => {
+  const robot1 = createRobot( 0, 0, 'W')
+  const newRobot1 = commands['F'](robot1, mars)
+  expect(newRobot1.orientation).toBe('W')
+  expect(newRobot1.x).toBe(0)
+  expect(newRobot1.y).toBe(0)
+  expect(newRobot1.status).toBe('LOST')
+
+  const robot2 = createRobot( 0, 0, 'W')
+  const newRobot2 = commands['F'](robot2, mars)
+  expect(newRobot2.orientation).toBe('W')
+  expect(newRobot2.x).toBe(0)
+  expect(newRobot2.y).toBe(0)
+  expect(newRobot2.status).toBe(undefined)
+})
+
+test('It should return a lost robot if it moves outside mars', () => {
+  const robot = createRobot(5, 3, 'E')
+  const newRobot = commands['F'](robot, mars)
+
+  expect(newRobot.orientation).toBe('E')
+  expect(newRobot.x).toBe(5)
+  expect(newRobot.y).toBe(3)
+  expect(newRobot.status).toBe('LOST')
+})

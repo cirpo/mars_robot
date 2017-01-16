@@ -80,5 +80,13 @@ function moveForward(robot, mars){
       newRobot = null
   }
 
+  if (!coordinates.canMove(newRobot)){
+    return robot
+  }
+
+  if (!coordinates.areValid(newRobot, mars)) {
+    return Object.assign({}, robot, { status: 'LOST' })
+  }
+
   return newRobot
 }

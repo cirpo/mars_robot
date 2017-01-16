@@ -12,7 +12,7 @@ const Earth = {
   positionRobot(mars, position) {
     let robot = null
 
-    if(this.isAValidPosition(position) && coordinates.areValid(mars, position)) {
+    if(this.isAValidPosition(position) && coordinates.areValid(position, mars)) {
       robot = createRobot(position.x, position.y, position.orientation)
     }
 
