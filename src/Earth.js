@@ -1,4 +1,4 @@
-import { createRobot } from './Robots'
+import { createRobot, availableCommands } from './Robots'
 import coordinates from './Coordinates'
 
 const Earth = {
@@ -43,13 +43,17 @@ const Earth = {
    */
   sendCommand(robot, mars, commands) {
     commands.split('').forEach((ins) => {
-      console.log(ins)
-      console.log('robot', robot)
-      robot = robots.commands[ins](robot, mars)
+      robot = availableCommands[ins](robot, mars)
     })
 
-    this.robotz.push(robot)
+    this.robots.push(robot)
   },
+  /**
+   * @returns {Array} robots
+   */
+  getRobotsReport(){
+    return this.robots
+  }
 
 }
 

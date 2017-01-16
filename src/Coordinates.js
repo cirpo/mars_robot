@@ -37,8 +37,6 @@ const Coordinates = {
   canMove: function(robot) {
     return !scents.contains(this.getPosition(robot))
   }
-
 }
-
 
 export default Coordinates

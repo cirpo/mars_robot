@@ -1,6 +1,6 @@
 import coordinates from './Coordinates'
 
-export const commands = {
+export const availableCommands = {
   L: rotateLeft,
   R: rotateRigh,
   F: moveForward
