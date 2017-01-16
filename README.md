@@ -43,3 +43,25 @@ LLFFFLFLFL
 1 1 E
 3 3 N LOST
 2 3 S
+
+
+### RUN
+
+Install npm modules:
+
+```
+yarn install
+```
+
+and then
+
+```
+yarn start
+```
+
+
+#### TEST
+
+```
+yarn test
+``` 
